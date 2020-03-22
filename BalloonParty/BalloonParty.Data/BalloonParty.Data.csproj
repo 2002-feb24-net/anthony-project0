@@ -12,4 +12,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BalloonParty.Library\BalloonParty.Library.csproj" />
+  </ItemGroup>
+
 </Project>
