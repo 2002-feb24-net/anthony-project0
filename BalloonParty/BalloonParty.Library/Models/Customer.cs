@@ -9,5 +9,19 @@ namespace BalloonParty.Library.Models
         string city {get; set;}
         string state {get; set;}
         int zipCode {get; set;}
+
+
+        public Customer(string firstName, string lastName, string emailAddress, string address, string city, string state, int zipCode)
+        {
+            firstName = this.firstName;
+            lastName = this.lastName;
+            emailAddress = this.emailAddress;
+            address = this.address;
+            city = this.city;
+            state = this.state;
+            zipCode = this.zipCode;
+        }
     }
+
+    
 }

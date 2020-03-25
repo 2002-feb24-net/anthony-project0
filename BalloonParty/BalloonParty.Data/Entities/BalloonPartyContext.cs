@@ -22,12 +22,12 @@ namespace BalloonParty.Data.Entities
         public virtual DbSet<Invoice> Invoice { get; set; }
         public virtual DbSet<Item> Item { get; set; }
         public virtual DbSet<Store> Store { get; set; }
-        public virtual DbSet<StoreLocation> StoreLocation { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
+
                 optionsBuilder.UseSqlServer(EfSecretFile.ConnectionString);
             }
         }
@@ -37,7 +37,7 @@ namespace BalloonParty.Data.Entities
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.HasKey(e => e.EmailAddress)
-                    .HasName("PK__Customer__49A1474175E27AFA");
+                    .HasName("PK__Customer__49A14741F445B390");
 
                 entity.ToTable("Customer", "BPDB");
 
@@ -69,13 +69,13 @@ namespace BalloonParty.Data.Entities
                 entity.HasOne(d => d.CustomerEmailNavigation)
                     .WithMany(p => p.CustomerOrder)
                     .HasForeignKey(d => d.CustomerEmail)
-                    .HasConstraintName("FK__CustomerO__Custo__5AEE82B9");
+                    .HasConstraintName("FK__CustomerO__Custo__02084FDA");
 
                 entity.HasOne(d => d.CustomerLineNavigation)
                     .WithMany(p => p.CustomerOrder)
                     .HasForeignKey(d => d.CustomerLine)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__CustomerO__Custo__5BE2A6F2");
+                    .HasConstraintName("FK__CustomerO__Custo__02FC7413");
             });
 
             modelBuilder.Entity<Inventory>(entity =>
@@ -92,13 +92,13 @@ namespace BalloonParty.Data.Entities
                     .WithMany(p => p.Inventory)
                     .HasForeignKey(d => d.ItemId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Inventory__ItemI__571DF1D5");
+                    .HasConstraintName("FK__Inventory__ItemI__7E37BEF6");
 
                 entity.HasOne(d => d.Store)
                     .WithMany(p => p.Inventory)
                     .HasForeignKey(d => d.StoreId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Inventory__Store__5812160E");
+                    .HasConstraintName("FK__Inventory__Store__7F2BE32F");
             });
 
             modelBuilder.Entity<Invoice>(entity =>
@@ -116,19 +116,19 @@ namespace BalloonParty.Data.Entities
                 entity.HasOne(d => d.EmailAddressNavigation)
                     .WithMany(p => p.Invoice)
                     .HasForeignKey(d => d.EmailAddress)
-                    .HasConstraintName("FK__Invoice__EmailAd__52593CB8");
+                    .HasConstraintName("FK__Invoice__EmailAd__797309D9");
 
                 entity.HasOne(d => d.Item)
                     .WithMany(p => p.Invoice)
                     .HasForeignKey(d => d.ItemId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Invoice__ItemID__5441852A");
+                    .HasConstraintName("FK__Invoice__ItemID__7B5B524B");
 
                 entity.HasOne(d => d.Store)
                     .WithMany(p => p.Invoice)
                     .HasForeignKey(d => d.StoreId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Invoice__StoreID__534D60F1");
+                    .HasConstraintName("FK__Invoice__StoreID__7A672E12");
             });
 
             modelBuilder.Entity<Item>(entity =>
@@ -138,6 +138,8 @@ namespace BalloonParty.Data.Entities
                 entity.Property(e => e.ItemId).HasColumnName("ItemID");
 
                 entity.Property(e => e.ItemName).HasMaxLength(100);
+
+                entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
             });
 
             modelBuilder.Entity<Store>(entity =>
@@ -146,31 +148,13 @@ namespace BalloonParty.Data.Entities
 
                 entity.Property(e => e.StoreId).HasColumnName("StoreID");
 
-                entity.Property(e => e.StoreName).HasMaxLength(150);
-            });
-
-            modelBuilder.Entity<StoreLocation>(entity =>
-            {
-                entity.HasKey(e => e.LocationId)
-                    .HasName("PK__StoreLoc__E7FEA4772AC41B6F");
-
-                entity.ToTable("StoreLocation", "BPDB");
-
-                entity.Property(e => e.LocationId).HasColumnName("LocationID");
-
                 entity.Property(e => e.Address).HasMaxLength(150);
 
                 entity.Property(e => e.City).HasMaxLength(150);
 
                 entity.Property(e => e.State).HasMaxLength(25);
 
-                entity.Property(e => e.StoreId).HasColumnName("StoreID");
-
-                entity.HasOne(d => d.Store)
-                    .WithMany(p => p.StoreLocation)
-                    .HasForeignKey(d => d.StoreId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__StoreLoca__Store__4BAC3F29");
+                entity.Property(e => e.StoreName).HasMaxLength(150);
             });
 
             OnModelCreatingPartial(modelBuilder);

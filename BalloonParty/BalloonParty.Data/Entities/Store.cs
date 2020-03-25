@@ -9,14 +9,16 @@ namespace BalloonParty.Data.Entities
         {
             Inventory = new HashSet<Inventory>();
             Invoice = new HashSet<Invoice>();
-            StoreLocation = new HashSet<StoreLocation>();
         }
 
         public string StoreName { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public int ZipCode { get; set; }
         public int StoreId { get; set; }
 
         public virtual ICollection<Inventory> Inventory { get; set; }
         public virtual ICollection<Invoice> Invoice { get; set; }
-        public virtual ICollection<StoreLocation> StoreLocation { get; set; }
     }
 }
