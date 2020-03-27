@@ -10,6 +10,7 @@ namespace BalloonParty.Data.Entities
         public string ProductName { get; set; }
         public int ProductCount { get; set; }
         public int SinventoryId { get; set; }
+        public decimal ProductPrice { get; set; }
 
         public virtual Products Product { get; set; }
         public virtual Store Store { get; set; }

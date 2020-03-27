@@ -10,6 +10,7 @@ namespace BalloonParty.Data.Entities
         public int FullProductCount { get; set; }
         public decimal TotalPrice { get; set; }
         public int CustomerOrderId { get; set; }
+        public string ProductName { get; set; }
 
         public virtual Customer CustomerEmailNavigation { get; set; }
     }

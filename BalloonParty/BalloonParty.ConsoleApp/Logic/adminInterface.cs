@@ -10,7 +10,7 @@ namespace BalloonParty.ConsoleApp.Logic
             bool status = true;
             do
             {
-                System.Console.WriteLine("Please select the coorisponding number of your task\n1: Add New Store\n2: Add New Products\n3: Add New Customer\n4: Exit");
+                System.Console.WriteLine("Please select the coorisponding number of your task\n1: Add New Store\n2: Add New Products\n3: Add New Customer\n4: Return to Login\n\n4: Exit Application");
                 int input = int.Parse(Console.ReadLine());
                 
                 if(input == 1)
@@ -27,6 +27,12 @@ namespace BalloonParty.ConsoleApp.Logic
                 {
                     System.Console.Clear();
                     CustomerData.AddCustomer();
+                }
+                if(input == 4)
+                {
+                    System.Console.Clear();
+                    status = false;
+                    Login.mainLogin();
                 }
                 if(input == 4)
                 {
