@@ -3,22 +3,17 @@ using System.Collections.Generic;
 
 namespace BalloonParty.Data.Entities
 {
-    public partial class Store
+    public partial class Products
     {
-        public Store()
+        public Products()
         {
             ProductsPurchased = new HashSet<ProductsPurchased>();
             StoreInventory = new HashSet<StoreInventory>();
         }
 
-        public string StoreName { get; set; }
-        public string StoreUsername { get; set; }
-        public string StorePw { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public int ZipCode { get; set; }
-        public int StoreId { get; set; }
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public decimal? ProductPrice { get; set; }
 
         public virtual ICollection<ProductsPurchased> ProductsPurchased { get; set; }
         public virtual ICollection<StoreInventory> StoreInventory { get; set; }

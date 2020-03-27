@@ -1,6 +1,6 @@
 using System;
 
-namespace BalloonParty.ConsoleApp
+namespace BalloonParty.ConsoleApp.Logic
 {
     public class CustomerData
     {
@@ -11,26 +11,30 @@ namespace BalloonParty.ConsoleApp
             bool status = true;
 
             do{
-                System.Console.WriteLine("Please Enter Your First Name");
-            string firstName = Console.ReadLine();
+                System.Console.WriteLine("\n\nPlease Enter Your Information\n");
+                System.Console.WriteLine("First Name");
+                string firstName = Console.ReadLine();
 
-            System.Console.WriteLine("Please Enter Your Last Name");
-            string lastName = Console.ReadLine();
+                System.Console.WriteLine("Last Name");
+                string lastName = Console.ReadLine();
 
-            System.Console.WriteLine("Please Enter Your Email Address");
-            string emailAddress = Console.ReadLine();
+                System.Console.WriteLine("Email Address");
+                string emailAddress = Console.ReadLine();
 
-            System.Console.WriteLine("Please Enter Your Street Address (With Street Name)");
-            string streetAddress = Console.ReadLine();
+                System.Console.WriteLine("Password");
+                string pw = Console.ReadLine();
 
-            System.Console.WriteLine("Please Enter The City You Live In");
-            string cityName = Console.ReadLine();
+                System.Console.WriteLine("Street Address (With Street Name)");
+                string streetAddress = Console.ReadLine();
 
-            System.Console.WriteLine("Please Enter The State You Live In");
-            string stateName = Console.ReadLine();
+                System.Console.WriteLine("City");
+                string cityName = Console.ReadLine();
 
-            System.Console.WriteLine("Please Enter Your Zip Code");
-            int zipCode = int.Parse(Console.ReadLine());
+                System.Console.WriteLine("State");
+                string stateName = Console.ReadLine();
+
+                System.Console.WriteLine("Zip Code");
+                int zipCode = int.Parse(Console.ReadLine());
 
             using (var context = new BalloonParty.Data.Entities.BalloonPartyContext())
             {
@@ -38,6 +42,7 @@ namespace BalloonParty.ConsoleApp
                     FirstName = firstName,
                     LastName = lastName,
                     EmailAddress = emailAddress,
+                    CustomerPw = pw,
                     Address = streetAddress,
                     City = cityName,
                     State = stateName,
@@ -52,7 +57,8 @@ namespace BalloonParty.ConsoleApp
                 if(x == "n")
                 {
                     status = false;
-                    BalloonParty.ConsoleApp.Program.RunUIOptions();
+                    //BalloonParty.ConsoleApp.Program.RunUIOptions();
+                    Environment.Exit(-1);
                 }
             }
             }while(status);
