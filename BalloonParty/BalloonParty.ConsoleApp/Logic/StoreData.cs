@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace BalloonParty.ConsoleApp
+namespace BalloonParty.ConsoleApp.Logic
 {
     public class StoreData
     {
@@ -41,9 +41,10 @@ namespace BalloonParty.ConsoleApp
                     string x = Console.ReadLine();
                     if(x == "n")
                     {
-                        ShowStore();
+                        ShowStores();
                         status = false;
-                        BalloonParty.ConsoleApp.Program.RunUIOptions();
+                        Environment.Exit(-1);
+                        //BalloonParty.ConsoleApp.Program.RunUIOptions();
                     }
                 }   
 
@@ -51,17 +52,17 @@ namespace BalloonParty.ConsoleApp
         }
 
         // Shows List of store locations
-        public static void ShowStore()
+        public static void ShowStores()
         {
             using (var context = new BalloonParty.Data.Entities.BalloonPartyContext())
             {
                 var data = context.Store.ToList();
                 int i = 1;
                 foreach(var item in data)
-            {
-                System.Console.WriteLine($"{i}. {item.StoreName} : {item.Address} {item.City} {item.State} {item.ZipCode}");
-                i++;
-            }
+                {
+                    System.Console.WriteLine($"{item.StoreId}. {item.StoreName} : {item.Address} {item.City} {item.State} {item.ZipCode}");
+                    i++;
+                }
             }
         }
     }
