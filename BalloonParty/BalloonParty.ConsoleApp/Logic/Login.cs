@@ -5,11 +5,15 @@ namespace BalloonParty.ConsoleApp.Logic
 {
     public class Login
     {
-        // Main Login Screen
+        // Main Login Screen ******************************
         public static void mainLogin()
         {
-            System.Console.WriteLine("Please select if you are a customer, a store, or an admin\n1: Customer\n2: Store\n3: Admin");
+            System.Console.WriteLine("Please select if you are a customer, a store, or an admin or press zero to exit.\n1: Customer\n2: Store\n3: Admin\n\n0: Exit");
             int input = int.Parse(Console.ReadLine());
+            if(input == 0)
+            {
+                Environment.Exit(-1);                     
+            }
             System.Console.WriteLine("\nPLEASE LOGIN");
             System.Console.WriteLine("Please Enter Your Login ID");
             string email = Console.ReadLine();
@@ -37,6 +41,8 @@ namespace BalloonParty.ConsoleApp.Logic
                         System.Console.Clear();
                         adminInterface.adminMainMenu();                       
                     }
+                    
+                    
                     
                 }
                 catch (Exception)

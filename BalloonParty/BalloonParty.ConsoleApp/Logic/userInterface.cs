@@ -10,15 +10,31 @@ namespace BalloonParty.ConsoleApp.Logic
             bool status = true;
             do
             {
-                System.Console.WriteLine("Welcome to Balloon Party!!\nPlease select the coorisponding number  with the store you would like to visit or Press Zero to exit\n\n");
-                StoreData.ShowStores();
+                System.Console.WriteLine("Welcome to Balloon Party!!\nPlease select an option or Press Zero to exit\n\n1: Show Previous Orders\n2: See Store Locations\n3: Return to Login\n\n0: Exit Application");
                 int input = int.Parse(Console.ReadLine());
-                ProductData.ShowInventory(input);
+                if(input == 1)
+                {
+                    System.Console.Clear();
+                    status = false;
+                    CustomerData.ShowCustomersOrders();
+                }
+                if(input == 2)
+                {
+                    System.Console.Clear();
+                    status = false;
+                    CustomerData.PlaceOrder();
+                }
+                if(input == 3)
+                {
+                    System.Console.Clear();
+                    status = false;
+                    Login.mainLogin();
+                }
                 if(input == 0)
                 {   
+                    status = false;
                     Environment.Exit(-1);
                 }
-                status = false;
             } while(status);
         }
     }

@@ -76,6 +76,10 @@ namespace BalloonParty.Data.Entities
 
                 entity.Property(e => e.OrderDate).HasColumnType("datetime");
 
+                entity.Property(e => e.ProductName)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
                 entity.Property(e => e.TotalPrice).HasColumnType("numeric(10, 2)");
 
                 entity.HasOne(d => d.CustomerEmailNavigation)
@@ -182,6 +186,8 @@ namespace BalloonParty.Data.Entities
                 entity.Property(e => e.ProductId).HasColumnName("ProductID");
 
                 entity.Property(e => e.ProductName).HasMaxLength(100);
+
+                entity.Property(e => e.ProductPrice).HasColumnType("decimal(10, 2)");
 
                 entity.Property(e => e.StoreId).HasColumnName("StoreID");
 
