@@ -9,18 +9,27 @@ namespace BalloonParty.ConsoleApp.Logic
         public static void mainLogin()
         {
             bool status = true;
-            int newInput;
+            int newInput = 0;
             do{
                 System.Console.WriteLine("Please select if you are a customer, a store, or an admin\n1: Customer\n2: Store\n3: Admin");
                 string input = Console.ReadLine();
                 if(input == "1" || input == "2" || input == "3")
                 {
-                    newInput  = int.Parse(input);
-                    status = false;
+                    try
+                    {
+                        newInput  = int.Parse(input);
+                        status = false;
+                    }
+                    catch (System.Exception)
+                    {
+                        
+                        System.Console.WriteLine("Invalid input, please try again");
+                    }
+                    
                 }
                 
+                
             }while(status);
-            
             System.Console.WriteLine("\nPLEASE LOGIN");
             System.Console.WriteLine("Please Enter Your Login ID");
             string email = Console.ReadLine();
