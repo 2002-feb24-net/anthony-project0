@@ -3,20 +3,43 @@ using System.Linq;
 
 namespace BalloonParty.ConsoleApp.Logic
 {
+
     public class Login
     {
         // Main Login Screen ******************************
         public static void mainLogin()
         {
+            bool status = true;
+            int newInput = 0;
+            do{
+                System.Console.WriteLine("Please select if you are a customer, a store, or an admin\n1: Customer\n2: Store\n3: Admin");
+                string input = Console.ReadLine();
+                if(input == "1" || input == "2" || input == "3")
+                {
+                    try
+                    {
+                        newInput  = int.Parse(input);
+                        status = false;
+                    }
+                    catch (System.Exception)
+                    {
+                        
+                        System.Console.WriteLine("Invalid input, please try again");
+                    }
+                    
+                }
+                
+                
+            }while(status);
             System.Console.WriteLine("Please select if you are a customer, a store, or an admin or press zero to exit.\n1: Customer\n2: Store\n3: Admin\n\n0: Exit");
 
-            int input;
-            while (!int.TryParse(Console.ReadLine(), out input))
-            {
-                Console.WriteLine("Invalid input. Try again");
-            }
+            // int input;
+            // while (!int.TryParse(Console.ReadLine(), out input))
+            // {
+            //     Console.WriteLine("Invalid input. Try again");
+            // }
 
-            if(input == 0)
+            if(newInput == 0)
             {
                 Environment.Exit(-1);
             }
@@ -29,19 +52,19 @@ namespace BalloonParty.ConsoleApp.Logic
             {
                 try
                 {
-                    if(input == 1)
+                    if(newInput == 1)
                     {
                         var users = context.Customer.First(c=> c.EmailAddress == email && c.CustomerPw == pw);
                         System.Console.Clear();
                         userInterface.userMainMenu();
                     }
-                    if(input == 2)
+                    if(newInput == 2)
                     {
                         var storeUser = context.Store.First(s=> s.StoreUsername == email && s.StorePw == pw);
                         System.Console.Clear();
                         storeInterface.storeMainMenu();
                     }
-                    if(input == 3)
+                    if(newInput == 3)
                     {
                         var rootuser = context.RootUser.First(r => r.RootName == email && r.RootPw == pw);
                         System.Console.Clear();
@@ -59,9 +82,6 @@ namespace BalloonParty.ConsoleApp.Logic
                     mainLogin();
                 }
             }
-
-
-
         }
     }
 }
