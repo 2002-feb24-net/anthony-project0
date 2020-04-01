@@ -9,10 +9,25 @@ namespace BalloonParty.ConsoleApp.Logic
         public static void mainLogin()
         {
             System.Console.WriteLine("Please select if you are a customer, a store, or an admin or press zero to exit.\n1: Customer\n2: Store\n3: Admin\n\n0: Exit");
-            int input = int.Parse(Console.ReadLine());
+
+            bool goodInput = false;
+            int input = 0;
+            while (!goodInput)
+            {
+                try
+                {
+                    input = int.Parse(Console.ReadLine());
+                    goodInput = true;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid input. Try again");
+                }
+            }
+
             if(input == 0)
             {
-                Environment.Exit(-1);                     
+                Environment.Exit(-1);
             }
             System.Console.WriteLine("\nPLEASE LOGIN");
             System.Console.WriteLine("Please Enter Your Login ID");
@@ -37,23 +52,23 @@ namespace BalloonParty.ConsoleApp.Logic
                     }
                     if(input == 3)
                     {
-                        var rootuser = context.RootUser.First(r => r.RootName == email && r.RootPw == pw);     
+                        var rootuser = context.RootUser.First(r => r.RootName == email && r.RootPw == pw);
                         System.Console.Clear();
-                        adminInterface.adminMainMenu();                       
+                        adminInterface.adminMainMenu();
                     }
-                    
-                    
-                    
+
+
+
                 }
                 catch (Exception)
                 {
-                    
+
                     System.Console.WriteLine("Invalid Login\n\n");
                     System.Console.Clear();
                     mainLogin();
                 }
             }
-            
+
 
 
         }
