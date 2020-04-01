@@ -10,10 +10,10 @@ namespace BalloonParty.ConsoleApp.Logic
         {
             System.Console.WriteLine("Please select if you are a customer, a store, or an admin or press zero to exit.\n1: Customer\n2: Store\n3: Admin\n\n0: Exit");
 
-            if (!int.TryParse(Console.ReadLine(), out int input))
+            int input;
+            while (!int.TryParse(Console.ReadLine(), out input))
             {
-                Console.WriteLine("Invalid input, quitting.");
-                return;
+                Console.WriteLine("Invalid input. Try again");
             }
 
             if(input == 0)
