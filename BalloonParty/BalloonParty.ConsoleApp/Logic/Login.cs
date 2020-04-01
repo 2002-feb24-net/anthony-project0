@@ -3,9 +3,10 @@ using System.Linq;
 
 namespace BalloonParty.ConsoleApp.Logic
 {
+
     public class Login
     {
-        // Main Login Screen
+        // Main Login Screen ******************************
         public static void mainLogin()
         {
             bool status = true;
@@ -30,6 +31,18 @@ namespace BalloonParty.ConsoleApp.Logic
                 
                 
             }while(status);
+            System.Console.WriteLine("Please select if you are a customer, a store, or an admin or press zero to exit.\n1: Customer\n2: Store\n3: Admin\n\n0: Exit");
+
+            // int input;
+            // while (!int.TryParse(Console.ReadLine(), out input))
+            // {
+            //     Console.WriteLine("Invalid input. Try again");
+            // }
+
+            if(newInput == 0)
+            {
+                Environment.Exit(-1);
+            }
             System.Console.WriteLine("\nPLEASE LOGIN");
             System.Console.WriteLine("Please Enter Your Login ID");
             string email = Console.ReadLine();
@@ -53,15 +66,17 @@ namespace BalloonParty.ConsoleApp.Logic
                     }
                     if(newInput == 3)
                     {
-                        var rootuser = context.RootUser.First(r => r.RootName == email && r.RootPw == pw);     
+                        var rootuser = context.RootUser.First(r => r.RootName == email && r.RootPw == pw);
                         System.Console.Clear();
-                        adminInterface.adminMainMenu();                       
+                        adminInterface.adminMainMenu();
                     }
-                    
+
+
+
                 }
                 catch (Exception)
                 {
-                    
+
                     System.Console.WriteLine("Invalid Login\n\n");
                     System.Console.Clear();
                     mainLogin();

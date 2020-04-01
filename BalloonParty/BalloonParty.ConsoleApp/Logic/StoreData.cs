@@ -6,7 +6,7 @@ namespace BalloonParty.ConsoleApp.Logic
     public class StoreData
     {
 
-        // Adds Store to Database
+        // Adds Store to Database ******************************
         public static void AddStore()
         {
             bool status = true;
@@ -41,17 +41,16 @@ namespace BalloonParty.ConsoleApp.Logic
                     string x = Console.ReadLine();
                     if(x == "n")
                     {
-                        ShowStores();
+                        System.Console.Clear();
                         status = false;
-                        Environment.Exit(-1);
-                        //BalloonParty.ConsoleApp.Program.RunUIOptions();
+                        adminInterface.adminMainMenu();
                     }
                 }   
 
             } while(status);
         }
 
-        // Shows List of store locations
+        // Shows List of store locations ******************************
         public static void ShowStores()
         {
             using (var context = new BalloonParty.Data.Entities.BalloonPartyContext())
@@ -64,6 +63,7 @@ namespace BalloonParty.ConsoleApp.Logic
                     i++;
                 }
             }
+            System.Console.WriteLine("\n\n");
         }
     }
 }

@@ -1,6 +1,6 @@
 SELECT * FROM [BPDB].[Customer]
 SELECT * FROM [BPDB].[Store]
-SELECT * FROM [BPDB].[Admin]
+SELECT * FROM [BPDB].[RootUser]
 SELECT * FROM [BPDB].[ProductsPurchased]
 SELECT * FROM [BPDB].[StoreInventory]
 SELECT * FROM [BPDB].[Products]
