@@ -10,8 +10,17 @@ namespace BalloonParty.ConsoleApp.Logic
             bool status = true;
             do
             {
+                int input = 0;
                 System.Console.WriteLine("Please select the coorisponding number of your task\n1: Add Customer\n2: Order New Items\n3: Return to Login\n4: Exit Application");
-                int input = int.Parse(Console.ReadLine());
+                try
+                {
+                    input = int.Parse(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("Please enter valid Number");
+
+                }
                 
                 if(input == 1)
                 {
